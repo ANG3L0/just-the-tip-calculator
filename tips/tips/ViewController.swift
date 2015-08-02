@@ -46,5 +46,30 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //load settings here
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var tipDefault = defaults.integerForKey("default_tip")
+        tipControl.selectedSegmentIndex = tipDefault
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("view did appear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        println("view will disappear")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("view did disappear")
+    }
+
+    
 }
 
