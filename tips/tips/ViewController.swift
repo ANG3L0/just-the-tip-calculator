@@ -20,6 +20,9 @@ class ViewController: UIViewController {
         self.billField.becomeFirstResponder()
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
+        if billField.text.isEmpty || billField.text == "$$$" {
+            billField.text = "$"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +34,24 @@ class ViewController: UIViewController {
     @IBAction func onEditingChanged(sender: AnyObject) {
         var tipPercentages = [0.18, 0.2, 0.22]
         var tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
-        var billAmount = billField.text._bridgeToObjectiveC().doubleValue
+        var billFieldStr = billField.text
+        if !billFieldStr.isEmpty {
+            billFieldStr.removeAtIndex(billFieldStr.startIndex)
+        }
+        
+        var billAmount = billFieldStr._bridgeToObjectiveC().doubleValue
         var tip = billAmount * tipPercentage
         var total = billAmount + tip
         
         tipLabel.text = "$\(tip)"
         totalLabel.text = "$\(total)"
         
+        
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+        if billField.text.isEmpty || billField.text == "$$$" {
+            billField.text = "$"
+        }
     }
     
     @IBAction func onTap(sender: AnyObject) {
@@ -58,6 +70,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("view did appear")
+        billField.text = "$"
     }
     
     override func viewWillDisappear(animated: Bool) {
