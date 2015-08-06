@@ -17,12 +17,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.billField.becomeFirstResponder()
+
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
         if billField.text.isEmpty || billField.text == "$$$" {
             billField.text = "$"
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +71,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("view did appear")
-        billField.text = "$"
+        println(billField.text)
+        self.billField.becomeFirstResponder()
+        //billField.text = "$" //this shouldn't be needed. don't know why this is necessary for $ to show up on initialization
     }
     
     override func viewWillDisappear(animated: Bool) {

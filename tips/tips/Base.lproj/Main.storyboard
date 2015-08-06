@@ -74,6 +74,10 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.093588642240000006" green="0.053712951789999998" blue="0.42016093840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Md2-y5-pQK" appends="YES" id="prQ-uG-Gk2"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="oqy-5Z-XGL">
                         <barButtonItem key="rightBarButtonItem" title="Home" id="dT1-1T-V3e">
@@ -87,6 +91,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ory-Mw-Abl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Md2-y5-pQK">
+                    <connections>
+                        <action selector="onTap:" destination="3YE-eK-ZKr" id="2E2-mx-KiF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1759" y="1048"/>
         </scene>
