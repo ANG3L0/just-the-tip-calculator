@@ -159,6 +159,13 @@
                                 <color key="textColor" red="1" green="0.38540375142439942" blue="0.82335589238559515" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start typing to start!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtt-TF-mVl">
+                                <rect key="frame" x="31" y="214" width="259" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.093588642236270642" green="0.053712951793329126" blue="0.42016093842840152" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -175,6 +182,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="Ypz-4R-9os" id="9LC-7C-cm0"/>
+                        <outlet property="equationBar" destination="CDr-FA-8dj" id="WHK-Qr-214"/>
+                        <outlet property="msgField" destination="vtt-TF-mVl" id="csP-1o-eXe"/>
+                        <outlet property="plusSign" destination="Gme-fr-oo0" id="My0-Gx-rZV"/>
                         <outlet property="tipControl" destination="B0e-fg-jqN" id="kMJ-9v-NkH"/>
                         <outlet property="tipLabel" destination="hez-D8-app" id="l68-25-8Rf"/>
                         <outlet property="totalLabel" destination="Q3K-pf-T4Q" id="rwa-4l-HbZ"/>

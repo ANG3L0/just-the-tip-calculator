@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var plusSign: UILabel!
+    @IBOutlet weak var equationBar: UIView!
+    @IBOutlet weak var msgField: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,8 +53,27 @@ class ViewController: UIViewController {
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
-        if billField.text.isEmpty || billField.text == "$$$" {
+        if billField.text.isEmpty {
             billField.text = "$"
+        }
+        if billField.text == "$" {
+            UIView.animateWithDuration(0.4, animations: {
+                // This causes first view to fade in and second view to fade out
+                self.plusSign.alpha = 0
+                self.equationBar.alpha = 0
+                self.tipLabel.alpha = 0
+                self.totalLabel.alpha = 0
+                self.msgField.alpha = 1
+            })
+        } else {
+            UIView.animateWithDuration(0.4, animations: {
+                // This causes first view to fade in and second view to fade out
+                self.plusSign.alpha = 1
+                self.equationBar.alpha = 1
+                self.tipLabel.alpha = 1
+                self.totalLabel.alpha = 1
+                self.msgField.alpha = 0
+            })
         }
     }
     
@@ -66,6 +88,10 @@ class ViewController: UIViewController {
         var defaults = NSUserDefaults.standardUserDefaults()
         var tipDefault = defaults.integerForKey("default_tip")
         tipControl.selectedSegmentIndex = tipDefault
+        self.plusSign.alpha = 0
+        self.equationBar.alpha = 0
+        self.tipLabel.alpha = 0
+        self.totalLabel.alpha = 0
     }
     
     override func viewDidAppear(animated: Bool) {
