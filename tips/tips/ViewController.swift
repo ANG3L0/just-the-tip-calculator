@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var plusSign: UILabel!
     @IBOutlet weak var equationBar: UIView!
     @IBOutlet weak var msgField: UILabel!
+    var lowTip: Double = 0.0
+    var midTip: Double = 0.0
+    var hiTip: Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,6 +29,7 @@ class ViewController: UIViewController {
         if billField.text.isEmpty || billField.text == "$$$" {
             billField.text = "$"
         }
+        //TODO load setting tip percentages here and divide by 100
         
     }
 
@@ -36,7 +40,8 @@ class ViewController: UIViewController {
 
 
     @IBAction func onEditingChanged(sender: AnyObject) {
-        var tipPercentages = [0.18, 0.2, 0.22]
+        //TODO make this load setting tip percentages.
+        var tipPercentages = [self.lowTip, self.midTip, self.hiTip]
         var tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         var billFieldStr = billField.text
         if !billFieldStr.isEmpty {
@@ -87,6 +92,21 @@ class ViewController: UIViewController {
         //load settings here
         var defaults = NSUserDefaults.standardUserDefaults()
         var tipDefault = defaults.integerForKey("default_tip")
+        //the tip fields will always have something: if setting was empty, defaults to 0
+        var lowTipStr: String! = defaults.stringForKey("low_tip")
+        var midTipStr: String! = defaults.stringForKey("mid_tip")
+        var highTipStr: String! = defaults.stringForKey("high_tip")
+        tipControl.setTitle(lowTipStr, forSegmentAtIndex: 0)
+        tipControl.setTitle(midTipStr, forSegmentAtIndex: 1)
+        tipControl.setTitle(highTipStr, forSegmentAtIndex: 2)
+        
+        lowTipStr.removeAtIndex(lowTipStr.endIndex.predecessor())
+        midTipStr.removeAtIndex(midTipStr.endIndex.predecessor())
+        highTipStr.removeAtIndex(highTipStr.endIndex.predecessor())
+        self.lowTip = lowTipStr._bridgeToObjectiveC().doubleValue/100
+        self.midTip = midTipStr._bridgeToObjectiveC().doubleValue/100
+        self.hiTip = highTipStr._bridgeToObjectiveC().doubleValue/100
+        
         tipControl.selectedSegmentIndex = tipDefault
         self.plusSign.alpha = 0
         self.equationBar.alpha = 0
